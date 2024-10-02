@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Swal from 'sweetalert2'; // Importing SweetAlert2
 import './App.css';
 
 function App() {
@@ -13,9 +14,22 @@ function App() {
     }
   };
 
-  // Function to delete a task
+  // Function to delete a task with SweetAlert confirmation
   const deleteToDo = (id) => {
-    setTODos(toDos.filter((obj) => obj.id !== id));
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setTODos(toDos.filter((obj) => obj.id !== id)); // Deleting the task
+        Swal.fire('Deleted!', 'Your task has been deleted.', 'success');
+      }
+    });
   };
 
   return (
@@ -25,7 +39,7 @@ function App() {
       </div>
       <div className="subHeading">
         <br />
-        <h2>Whoop, it's Wednesday 🌝 ☕ </h2>
+       
       </div>
       <div className="input">
         <input
