@@ -1,38 +1,156 @@
-.App {
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  background: url('./bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* Adding a glassmorphism effect */
+.app {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -10%);
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  backdrop-filter: blur(10px); /* Glass effect */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Main Heading */
+.mainHeading h1 {
   text-align: center;
+  font-size: 3rem;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Adding text shadow */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Subheading styling */
+.subHeading h2 {
+  text-align: center;
+  color: #ddd;
+  font-size: 1.2rem;
+  margin-top: 10px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Input section styling with glass effect */
+.input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5em;
+  padding: 0.8em;
+  width: 90%;
+  background-color: rgba(255, 255, 255, 0.2); /* Glassy input background */
+  border-radius: 12px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.input input {
+  width: 80%;
+  padding: 0.8em;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.input i {
+  cursor: pointer;
+  font-size: 1.5rem;
+  margin-left: 10px;
+  color: #4caf50;
+  transition: color 0.3s;
+}
+
+.input i:hover {
+  color: #388e3c;
+}
+
+/* Styling the todo list items */
+.todos {
+  margin-top: 1.5em;
   display: flex;
   flex-direction: column;
+  gap: 10px;
+}
+
+.todo {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background: rgba(255, 255, 255, 0.2); /* Glassy todo background */
+  padding: 0.8em;
+  border-radius: 12px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
 }
 
-.App-link {
-  color: #61dafb;
+.todo:hover {
+  background-color: rgba(255, 255, 255, 0.3); /* Slight hover effect */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.todo .left {
+  display: flex;
+  align-items: center;
+}
+
+.todo .left p {
+  margin-left: 10px;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.todo .left p.completed {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+.todo .right i {
+  cursor: pointer;
+  color: #ff5252;
+  transition: color 0.3s;
+}
+
+.todo .right i:hover {
+  color: #e53935;
+}
+
+/* Completed Task Section */
+.completedTasks {
+  margin-top: 2em;
+}
+
+.completedTasks h2 {
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.completedTasks p {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 0.8em;
+  border-radius: 8px;
+  margin-top: 0.5em;
+  color: #fff;
+  text-decoration: line-through;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
