@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import Swal from 'sweetalert2'; // Importing SweetAlert2
+import Swal from 'sweetalert2'; 
 import './App.css';
 
 function App() {
   const [toDos, setTODos] = useState([]);
   const [toDo, setToDo] = useState('');
+  const [editingId, setEditingId] = useState(null); 
+  const [editingText, setEditingText] = useState('');
 
   // Function to add a new task
   const addToDo = () => {
     if (toDo.trim()) {
       setTODos([...toDos, { id: Date.now(), text: toDo, status: false }]);
-      setToDo(''); // Clear the input after adding
+      setToDo(''); 
     }
   };
 
@@ -32,6 +34,22 @@ function App() {
     });
   };
 
+  // Function to handle the start of editing
+  const startEditing = (id, currentText) => {
+    setEditingId(id);
+    setEditingText(currentText);
+  };
+
+  // Function to handle saving the edited task
+  const saveEdit = (id) => {
+    setTODos(
+      toDos.map((item) =>
+        item.id === id ? { ...item, text: editingText } : item
+      )
+    );
+    setEditingId(null); // Exit editing mode
+  };
+
   return (
     <div className="app">
       <div className="mainHeading">
@@ -39,7 +57,6 @@ function App() {
       </div>
       <div className="subHeading">
         <br />
-       
       </div>
       <div className="input">
         <input
@@ -67,9 +84,24 @@ function App() {
                   );
                 }}
               />
-              <p className={obj.status ? 'completed' : ''}>{obj.text}</p>
+              {editingId === obj.id ? (
+              
+                <input
+                  type="text"
+                  value={editingText}
+                  onChange={(e) => setEditingText(e.target.value)}
+                />
+              ) : (
+                
+                <p className={obj.status ? 'completed' : ''}>{obj.text}</p>
+              )}
             </div>
             <div className="right">
+              {editingId === obj.id ? (
+                <i onClick={() => saveEdit(obj.id)} className="fas fa-save"></i> 
+              ) : (
+                <i onClick={() => startEditing(obj.id, obj.text)} className="fas fa-edit"></i> 
+              )}
               <i onClick={() => deleteToDo(obj.id)} className="fas fa-times delete"></i>
             </div>
           </div>
